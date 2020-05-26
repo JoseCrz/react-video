@@ -15,7 +15,12 @@ const Header = props => {
   const hasUser = Object.keys(user).length > 0
 
   const handleLogOut = () => {
+    document.cookie = 'id='
+    document.cookie = 'name='
+    document.cookie = 'email='
+    document.cookie = 'token='
     props.logoutRequest({})
+    window.location.href = '/login'
   }
 
   return (
