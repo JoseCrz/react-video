@@ -1,5 +1,8 @@
 require('ignore-styles')
 
+// ? For async - await
+require('@babel/polyfill')
+
 require('@babel/register')({
   presets: [
     '@babel/preset-env',
