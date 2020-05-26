@@ -2,7 +2,7 @@ const passport = require('passport')
 const { BasicStrategy } = require('passport-http')
 const boom = require('@hapi/boom')
 const axios = require('axios')
-const config = require('../../../config')
+const config = require('../../../../config')
 
 const API_URL = config.apiUrl
 const API_KEY_TOKEN = config.apiKeyToken
