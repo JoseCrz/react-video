@@ -17,7 +17,6 @@ import getManifest from './utils/getManifest'
 
 import Layout from '../frontend/components/Layout'
 import reducer from '../frontend/reducers'
-import initialState from '../frontend/initialState'
 
 import config from '../config'
 import { TWO_HOURS ,THIRTY_DAYS} from './utils/times'
@@ -88,14 +87,42 @@ const setResponse = (html, preloadedState, manifest) => {
 }
 
 const renderApp = (req, res) => {
+  let initialState
+
+  const { email, name, id } = req.cookies  
+
+  if (id) {
+    initialState = {
+      user: {
+        id,
+        name,
+        email
+      },
+      playing: {},
+      filter: '',
+      myList: [],
+      trends: [],
+      originals: [],
+    }
+  } else {
+    initialState = {
+      user: {},
+      playing: {},
+      filter: '',
+      myList: [],
+      trends: [],
+      originals: [],
+    }
+  }
   const store = createStore(reducer, initialState)
   const preloadedState = store.getState()
+  const isLogged = (initialState.user.id)
 
   const html = renderToString(
     <Provider store={store} >
       <StaticRouter location={req.url} context={ { } }>
         <Layout>
-          {renderRoutes(serverRoutes)}
+          {renderRoutes(serverRoutes(isLogged))}
         </Layout>
       </StaticRouter>
     </Provider>
