@@ -26,6 +26,11 @@ const { DEV, PORT } = config
 
 const app = express()
 
+// ? Basic Server Middleware Config
+app.use(express.json())
+app.use(cookieParser())
+app.use(passport.initialize())
+
 if (DEV) {
   console.log('Working in development mode')
 
