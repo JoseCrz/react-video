@@ -71,3 +71,31 @@ export const registerUser = (payload, redirectUrl) => {
     })
   }
 }
+
+export const loginUser = (payload, redirectUrl) => {
+  const { email, password } = payload
+  return dispatch => {
+    axios({
+      url: '/auth/sign-in',
+      method: 'post',
+      auth: {
+        username: email,
+        password
+      }
+    })
+    .then(({ data }) => {
+      const { user } = data
+      document.cookie = `email=${user.email}`
+      document.cookie = `name=${user.name}`
+      document.cookie = `id=${user.id}`
+      dispatch(loginRequest(user))
+    })
+    .then(() => {
+      window.location.href = redirectUrl
+    })
+    .catch(error => {
+      console.log("loginUser -> error", error)
+      dispatch(setError(error))
+    })
+  }
+}

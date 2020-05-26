@@ -31,6 +31,9 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(passport.initialize())
 
+// ? Basic Auth Strategy
+require('./utils/auth/strategies/basic')
+
 if (DEV) {
   console.log('Working in development mode')
 
