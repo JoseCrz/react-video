@@ -102,7 +102,6 @@ export const loginUser = (payload, redirectUrl) => {
 
 export const saveFavorite = payload => {
   return dispatch => {
-    // const { id: movieId } = payload
     axios({
       url: '/user-movies',
       method: 'post',

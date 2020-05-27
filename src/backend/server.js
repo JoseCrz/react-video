@@ -100,6 +100,17 @@ const renderApp = async (req, res) => {
       method: 'get'
     })
 
+    const { data: userMoviesData } = await axios({
+      url: `${config.apiUrl}/api/user-movies?userId=${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      method: 'get'
+    })
+
+    const userMovies = userMoviesData.data
+    const moviesIds = userMovies.map(userMovie => userMovie.movieId)
+
     const movieList = data.data
 
     initialState = {
@@ -110,7 +121,7 @@ const renderApp = async (req, res) => {
       },
       playing: {},
       filter: '',
-      myList: [],
+      myList: movieList.filter(movie => moviesIds.includes(movie._id)),
       trends: movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
       originals: movieList.filter(movie => movie.contentRating === 'G' && movie._id),
     }
