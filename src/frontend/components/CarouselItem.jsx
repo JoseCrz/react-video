@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { saveFavorite, deleteFavorite } from '../actions'
+import { saveFavorite, removeFavorite } from '../actions'
 
 import '../assets/sass/components/CarouselItem.scss'
 import playIcon from '../assets/static/play.svg'
@@ -26,7 +26,7 @@ const CarouselItem = props => {
   }
 
   const handleDeleteFavorite = itemId => {
-    props.deleteFavorite(itemId)
+    props.removeFavorite(itemId)
   }
 
   return (
@@ -38,7 +38,7 @@ const CarouselItem = props => {
                 <img className="Carousel-item__button" src={playIcon} alt="Play Button" width="30px" />
               </Link>
               {isMyList 
-              ? <img className="Carousel-item__button" onClick={() => handleDeleteFavorite(id)}  src={deleteIcon} alt="Delete from list Button" width="30px" />
+              ? <img className="Carousel-item__button" onClick={() => handleDeleteFavorite(_id)}  src={deleteIcon} alt="Delete from list Button" width="30px" />
               : <img className="Carousel-item__button" onClick={handleSetFavorite}  src={addIcon} alt="Add to list Button" width="30px" /> }
           </div>
           <p className="Carousel-item__title">{title}</p>
@@ -58,7 +58,7 @@ CarouselItem.propTypes = {
 
 const mapDispatchToProps = {
   saveFavorite,
-  deleteFavorite,
+  removeFavorite,
 }
 
 export default connect(null, mapDispatchToProps)(CarouselItem)

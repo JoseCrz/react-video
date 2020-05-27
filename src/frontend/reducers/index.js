@@ -14,7 +14,7 @@ const reducer = (state, action) => {
     case 'DELETE_FAVORITE':
       return {
         ...state,
-        myList: state.myList.filter(item => item.id !== action.payload)
+        myList: state.myList.filter(item => item._id !== action.payload)
       }
     case 'LOGIN_REQUEST':
       return {

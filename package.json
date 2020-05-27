@@ -14,6 +14,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "@babel/register": "^7.9.0",
+    "@babel/runtime": "^7.10.0",
     "@hapi/boom": "^9.1.0",
     "asset-require-hook": "^1.2.0",
     "axios": "^0.19.2",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-runtime": "^7.10.0",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "babel-eslint": "^10.1.0",

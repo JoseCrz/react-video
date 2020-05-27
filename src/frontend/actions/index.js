@@ -115,3 +115,47 @@ export const saveFavorite = payload => {
     })
   }
 }
+
+export const removeFavorite = payload => {
+  return async dispatch => {
+    try {
+      const { data: userMovies} = await axios({
+        url: '/user-movies',
+        method: 'get'
+      })
+
+      const targetMovie = userMovies.filter(movie => movie.movieId === payload)[0]
+
+      await axios({
+        url: `/user-movies/${targetMovie._id}/`,
+        method: 'delete',
+        data: { userMovies, payload, targetMovie }
+      })
+
+      dispatch(deleteFavorite(payload))
+      
+    } catch (error) {
+      dispatch(setError(error))
+    }
+
+
+    // axios({
+    //   url: '/user-movies',
+    //   method: 'get'
+    // })
+    // .then(({ data }) => {
+      // const { userMovies } = data
+      // const targetMovie = userMovies.filter(movie => movie.movieId === payload)
+    //   return axios({
+    //     url: `/user-movies/:userMovieId`,
+    //     method: 'delete'
+    //   })
+    // })
+    // .then(() => {
+    //   dispatch(deleteFavorite(payload))
+    // })
+    // .catch(error => {
+    //   dispatch(setError(error))
+    // })
+  }
+}

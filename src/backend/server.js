@@ -119,6 +119,7 @@ const renderApp = async (req, res) => {
         name,
         email
       },
+      userMovies,
       playing: {},
       filter: '',
       myList: movieList.filter(movie => moviesIds.includes(movie._id)),
@@ -205,6 +206,31 @@ app.post('/auth/sign-up', async (req, res, next) => {
   }
 })
 
+app.get('/user-movies', async (req, res, next) => {
+  const { id, token } = req.cookies
+  try {
+    const { data, status } = await axios({
+      url: `${config.apiUrl}/api/user-movies?userId=${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      method: 'get'
+    })
+
+    if (!data || status !== 200) {
+      next(boom.unauthorized())
+    }
+
+    const userMovies = data.data
+    console.log("userMovies", userMovies)
+
+    res.status(200).json(userMovies)
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 app.post('/user-movies', async (req, res, next) => {
 
   try {
@@ -212,9 +238,6 @@ app.post('/user-movies', async (req, res, next) => {
     const { _id: movieId } = movie
     const { token, id: userId } = req.cookies
      
-    // console.log("movie", movie)
-    // console.log("userId", userId)
-    // console.log("token", token)
     const userMovie = {
       movieId,
       userId
@@ -236,6 +259,26 @@ app.post('/user-movies', async (req, res, next) => {
   } catch (error) {
     next(error)
   }
+})
+
+app.delete('/user-movies/:userMovieId', async (req, res, next) => {
+  const { userMovieId } = req.params
+  
+  console.log("req.params", req.params)
+  console.log("req.body", req.body)
+  const { token } = req.cookies
+
+  const { data, status } = await axios({
+    url: `${config.apiUrl}/api/user-movies/${userMovieId}`,
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'delete'
+  })
+
+  if (status !== 200) {
+    return next(boom.badImplementation())
+  }
+
+  res.status(200).json(data)
 })
 
 app.get('*', renderApp)
