@@ -86,12 +86,23 @@ const setResponse = (html, preloadedState, manifest) => {
   `)
 }
 
-const renderApp = (req, res) => {
+const renderApp = async (req, res) => {
   let initialState
 
-  const { email, name, id } = req.cookies  
+  const { token, email, name, id } = req.cookies
 
-  if (id) {
+  try {
+    const { data } = await axios({
+      url: `${config.apiUrl}/api/movies`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      method: 'get'
+    })
+
+    const movieList = data.data
+    console.log("renderApp -> movieList", movieList)
+
     initialState = {
       user: {
         id,
@@ -101,10 +112,12 @@ const renderApp = (req, res) => {
       playing: {},
       filter: '',
       myList: [],
-      trends: [],
-      originals: [],
+      trends: movieList.filter(movie => movie.contentRating === 'PG' && movie._id),
+      originals: movieList.filter(movie => movie.contentRating === 'G' && movie._id),
     }
-  } else {
+
+  } catch (error) {
+    console.log(error)
     initialState = {
       user: {},
       playing: {},
@@ -114,6 +127,7 @@ const renderApp = (req, res) => {
       originals: [],
     }
   }
+
   const store = createStore(reducer, initialState)
   const preloadedState = store.getState()
   const isLogged = (initialState.user.id)
