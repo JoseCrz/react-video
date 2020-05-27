@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { setFavorite, deleteFavorite } from '../actions'
+import { saveFavorite, deleteFavorite } from '../actions'
 
 import '../assets/sass/components/CarouselItem.scss'
 import playIcon from '../assets/static/play.svg'
@@ -11,10 +11,11 @@ import addIcon from '../assets/static/add.svg'
 import deleteIcon from '../assets/static/delete-icon.svg'
 
 const CarouselItem = props => {
-  const { id, title, year, contentRating, duration, cover, isMyList } = props
+  const { _id, id, title, year, contentRating, duration, cover, isMyList } = props
 
   const handleSetFavorite = () => {
-    props.setFavorite({
+    props.saveFavorite({
+      _id,
       id,
       title,
       year,
@@ -56,7 +57,7 @@ CarouselItem.propTypes = {
 }
 
 const mapDispatchToProps = {
-  setFavorite,
+  saveFavorite,
   deleteFavorite,
 }
 

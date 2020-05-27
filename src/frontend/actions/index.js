@@ -99,3 +99,20 @@ export const loginUser = (payload, redirectUrl) => {
     })
   }
 }
+
+export const saveFavorite = payload => {
+  return dispatch => {
+    // const { id: movieId } = payload
+    axios({
+      url: '/user-movies',
+      method: 'post',
+      data: payload
+    })
+    .then(({ data }) => {
+      dispatch(setFavorite(data))
+    })
+    .catch(error => {
+      dispatch(setError(error))
+    })
+  }
+}

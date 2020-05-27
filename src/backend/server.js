@@ -101,7 +101,6 @@ const renderApp = async (req, res) => {
     })
 
     const movieList = data.data
-    console.log("renderApp -> movieList", movieList)
 
     initialState = {
       user: {
@@ -190,6 +189,39 @@ app.post('/auth/sign-up', async (req, res, next) => {
       email: user.email,
       id: data
     })
+  } catch (error) {
+    next(error)
+  }
+})
+
+app.post('/user-movies', async (req, res, next) => {
+
+  try {
+    const movie = req.body
+    const { _id: movieId } = movie
+    const { token, id: userId } = req.cookies
+     
+    // console.log("movie", movie)
+    // console.log("userId", userId)
+    // console.log("token", token)
+    const userMovie = {
+      movieId,
+      userId
+    }
+    
+    const { data, status } = await axios({
+      url: `${config.apiUrl}/api/user-movies`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'post',
+      data: userMovie
+    })
+
+    if (status !== 201) {
+      return next(boom.badImplementation())
+    }
+
+    res.status(201).json(movie)
+
   } catch (error) {
     next(error)
   }
