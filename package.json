@@ -7,7 +7,9 @@
     "start": "npm-run-all -p server",
     "build": "webpack-cli --config webpack.config.js",
     "server": "json-server --port 3001 --watch server/db.json",
-    "backend": "nodemon src/backend/index"
+    "backend": "nodemon src/backend/index",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "Jose Cuevas",
   "license": "ISC",
@@ -48,6 +50,8 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
@@ -55,6 +59,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.2",
     "file-loader": "^5.1.0",
+    "jest": "^26.0.1",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
@@ -65,5 +70,10 @@
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.11.0",
     "webpack-hot-middleware": "^2.25.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/frontend/__test__/setupTest.js"
+    ]
   }
 }
