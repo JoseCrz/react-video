@@ -6,9 +6,9 @@ import '../assets/sass/components/Footer.scss'
 const Footer = () => {
   return (
     <footer className="Footer">
-      <Link to="/" className="Footer__link">Terms & Conditions</Link>
-      <Link to="/" className="Footer__link">Privacy</Link>
-      <Link to="/" className="Footer__link">Help Center</Link>
+      <a to="/" className="Footer__link">Terms & Conditions</a>
+      <a to="/" className="Footer__link">Privacy</a>
+      <a to="/" className="Footer__link">Help Center</a>
     </footer>
   )
 }
