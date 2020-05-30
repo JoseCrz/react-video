@@ -10,7 +10,8 @@
     "backend": "nodemon src/backend/index",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:update":"jest --update-snapshot"
+    "test:update":"jest --update-snapshot",
+    "test:coverage": "jest --coverage"
   },
   "author": "Jose Cuevas",
   "license": "ISC",
@@ -74,6 +75,7 @@
     "webpack-hot-middleware": "^2.25.0"
   },
   "jest": {
+    "verbose": true,
     "setupFilesAfterEnv": [
       "<rootDir>/src/frontend/__test__/setupTest.js"
     ],
