@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Register /> Tests Container snapshot 1`] = `
+<section
+  className="Login"
+>
+  <div
+    className="Login__container Login__container--Login-up"
+  >
+    <h1
+      className="Login__title"
+    >
+      Don't have an account?
+    </h1>
+    <form
+      className="Login__form Login__form--Login-up"
+      onSubmit={[Function]}
+    >
+      <input
+        aria-label="Enter a username"
+        className="Login__input"
+        name="name"
+        onChange={[Function]}
+        placeholder="Username"
+        type="text"
+      />
+      <input
+        aria-label="Enter an email"
+        className="Login__input"
+        name="email"
+        onChange={[Function]}
+        placeholder="Email"
+        type="email"
+      />
+      <input
+        aria-label="Enter a password"
+        className="Login__input"
+        name="password"
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+      />
+      <button
+        aria-label="Login up button"
+        className="Login__button"
+        type="submit"
+      >
+        Login up
+      </button>
+    </form>
+    <article
+      className="Login__sign-up"
+    >
+      <p>
+        Already a member? 
+        <a
+          className="Login__link Login__link--bold"
+          href="/login"
+          onClick={[Function]}
+        >
+          Log in
+        </a>
+      </p>
+    </article>
+  </div>
+</section>
+`;
