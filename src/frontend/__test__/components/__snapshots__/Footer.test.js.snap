@@ -6,19 +6,22 @@ exports[`<Footer /> Tests Footer Snapshot 1`] = `
 >
   <a
     className="Footer__link"
-    to="/"
+    href="/"
+    onClick={[Function]}
   >
     Terms & Conditions
   </a>
   <a
     className="Footer__link"
-    to="/"
+    href="/"
+    onClick={[Function]}
   >
     Privacy
   </a>
   <a
     className="Footer__link"
-    to="/"
+    href="/"
+    onClick={[Function]}
   >
     Help Center
   </a>
