@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> Tests Component snapshot 1`] = `
+<header
+  className="Header"
+>
+  <figure
+    className="Header__logo-container"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="Reactivid Logo"
+        className="Header__logo"
+        src="test-file-stub"
+      />
+    </a>
+  </figure>
+  <nav
+    className="Header__nav"
+  >
+    <div
+      className="Header__nav-profile"
+    >
+      <img
+        alt="Profile Icon"
+        className="Header__profile"
+        src="test-file-stub"
+      />
+      <p>
+        Profile
+      </p>
+    </div>
+    <ul
+      className="Header__nav-menu"
+    >
+      <li>
+        <a
+          href="/login"
+          onClick={[Function]}
+        >
+          Log in
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+`;
