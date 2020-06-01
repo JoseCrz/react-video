@@ -13,12 +13,13 @@
     "backend": "nodemon src/backend/index",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:update":"jest --update-snapshot",
+    "test:update": "jest --update-snapshot",
     "test:coverage": "jest --coverage"
   },
   "author": "Jose Cuevas",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.9.6",
     "@babel/polyfill": "^7.8.7",
     "@babel/register": "^7.9.0",
     "@babel/runtime": "^7.10.0",
@@ -48,7 +49,6 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
     "@babel/plugin-transform-runtime": "^7.10.0",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
